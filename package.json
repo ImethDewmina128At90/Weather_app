@@ -2,7 +2,6 @@
   "name": "node_prac",
   "version": "1.0.0",
   "description": "Just_personal_Practise_Node",
-  "repository": "https://github.com/ImethDewmina128At90/Node_prac",
   "main": "hello.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
