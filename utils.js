@@ -2,5 +2,9 @@
 console.log('utils.js')
 const name = 'ballla'
 
-module.exports = name 
+function add(a, b) {
+	return a + b;
+}
+
+module.exports = { name, add }
 
