@@ -17,6 +17,7 @@ const chalk = require('chalk')
 
 console.log(chalk.green.italic.bgCyan('Sucesss'))
 
+console.log(process.argv)
 
 
 
