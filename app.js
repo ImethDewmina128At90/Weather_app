@@ -1,5 +1,4 @@
-const fs = require('fs');
+const name = require('./utils.js');
 
-fs.writeFileSync('notes.txt','this file created for node.js practise')
+console.log(name);
 
-fs.appendFileSync('notes.txt','\nthis is appended text')
