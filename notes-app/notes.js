@@ -1,3 +1,4 @@
+const { default: chalk } = require('chalk')
 const fs  = require('fs')
 
 const getNotes = () => {
@@ -39,6 +40,19 @@ const loadnotes = () => {
         return []
     }
 }
+
+const readnote = (title)=>{
+    const notes = loadnotes()
+    const note = notes.find((note) => note.title === title) 
+
+    if(note){
+        console.log(chalk.inverse(note.title))
+        console.log(note.body)
+    }else{
+         console.log(chalk.red.inverse('title not found'))
+    }
+
+}
 const removenotes = (title) => {
     const notes = loadnotes()
     const notestokeep = notes.filter((note) => {
@@ -51,5 +65,6 @@ const removenotes = (title) => {
 module.exports = { 
     getNotes: getNotes,
     addnotes: addnotes,
-    removenotes: removenotes
+    removenotes: removenotes,
+    readnote:readnote
 }
