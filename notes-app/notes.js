@@ -1,10 +1,55 @@
+const fs  = require('fs')
 
-
-const getNotes = function () {
+const getNotes = () => {
     return 'your notes'
-
-
-
 }
 
-module.exports = getNotes
+
+const addnotes = (title, body) => {
+    const notes = loadnotes()
+    const duplicatenotes = notes.filter((note) => {  
+        return note.title === title
+    })
+
+    if(duplicatenotes.length === 0 ){ 
+
+    notes.push({
+        title: title,
+        body:body
+    })
+    savenotes(notes)
+    console.log('new note added')  
+    } else{                         
+        console.log('note title taken!')
+    }
+    
+}
+
+const savenotes = (notes) => {
+    const  dataJSON = JSON.stringify(notes)
+    fs.writeFileSync('notes.json',dataJSON)
+}
+
+const loadnotes = () => {
+    try{
+    const databuffer = fs.readFileSync('notes.json')
+    const dataJSON = databuffer.toString()
+    return JSON.parse(dataJSON)
+    }catch (e){
+        return []
+    }
+}
+const removenotes = (title) => {
+    const notes = loadnotes()
+    const notestokeep = notes.filter((note) => {
+        return note.title !== title
+    })
+    savenotes(notestokeep)
+}
+
+
+module.exports = { 
+    getNotes: getNotes,
+    addnotes: addnotes,
+    removenotes: removenotes
+}
