@@ -1,0 +1,20 @@
+{
+  "name": "weather_app",
+  "version": "1.0.0",
+  "description": "Just_personal_Practise_Node",
+  "homepage": "https://github.com/ImethDewmina128At90/Node_prac#readme",
+  "bugs": {
+    "url": "https://github.com/ImethDewmina128At90/Node_prac/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ImethDewmina128At90/Node_prac.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "hello.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
