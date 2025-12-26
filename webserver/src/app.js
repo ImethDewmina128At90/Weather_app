@@ -1,21 +1,53 @@
-// server-node.js
-const http = require('http');
+const express = require('express');
+const app = express();
+const path = require('path');
 
-const server = http.createServer((req, res) => {
-  if (req.url === '/' && req.method === 'GET') {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write('hello this is my first time using express\n is still dosnet used to it so i am using https modules for this.\n Wish me luck');
-    res.end(`
-        <h1>Hello from raw Node!</h1>
-  <p>This is a paragraph</p>
-  <ul>
-    <li>Item 1</li>
-    <li>Item 2</li>
-  </ul>
-`);
-  } else {
-    res.writeHead(404).end('Not Found');
-  }
+const publicDirectory =path.join(__dirname,'../public')
+
+app.use(express.static(publicDirectory))
+
+// app.get('',)
+
+// app.get('/', (req, res) => {
+//   res.send(`
+//     <!DOCTYPE html>
+//     <html>
+//       <head>
+//         <title>Home Page</title>
+//       </head>
+//       <body>
+//         <h1>Hello! Express!</h1>
+//       </body>
+//     </html>
+//   `);
+// });
+
+app.get('/help', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Help Page</title>
+      </head>
+      <body>
+        <h1>Hello! Help Page!</h1>
+      </body>
+    </html>
+  `);
 });
 
-server.listen(3000, () => console.log('Server running on http://localhost:3000'));
+app.get('/weather', (req, res) => {
+  res.send({
+    weather: 'snowing'
+  });
+});
+app.get('/help_section', (req, res) => {
+  res.send(
+    '<h1>help section</h1>');
+});
+
+
+
+app.listen(3000, () => {
+  console.log('server started is on 300');
+});
