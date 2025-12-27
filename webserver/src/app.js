@@ -1,50 +1,56 @@
 const express = require('express');
-const app = express();
 const path = require('path');
+const hbs = require('hbs');
+const app = express();
 
-const publicDirectory =path.join(__dirname,'../public')
+// define paths for express config
+const publicDirectory = path.join(__dirname, '../public');
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname,'../templates/partials')
 
-app.use(express.static(publicDirectory))
+// Set up static directory
+app.set('views', viewsPath);
+app.use(express.static(publicDirectory));
+hbs.registerPartials(partialsPath)
 
-// app.get('',)
+// Set up view engine and views directory //
+app.set('view engine', 'hbs');
 
-// app.get('/', (req, res) => {
-//   res.send(`
-//     <!DOCTYPE html>
-//     <html>
-//       <head>
-//         <title>Home Page</title>
-//       </head>
-//       <body>
-//         <h1>Hello! Express!</h1>
-//       </body>
-//     </html>
-//   `);
-// });
+
+// Home route
+app.get('/', (req, res) => {
+  res.render('index',{
+    title:'weatherapp',
+    source:'about',
+    name:"Imeth dewmina",
+  });
+});
+app.get('/about',(req,res) =>{
+  res.render('about',{
+    name:"Imeth dewmina",
+    title:"about me",
+  })
+})
+
+
 
 app.get('/help', (req, res) => {
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Help Page</title>
-      </head>
-      <body>
-        <h1>Hello! Help Page!</h1>
-      </body>
-    </html>
-  `);
+  res.render('help', {
+    title:'help page',
+    name:"Imeth dewmina",
+  });
+
 });
 
 app.get('/weather', (req, res) => {
   res.send({
-    weather: 'snowing'
+    weather: 'snowing',
+    name:"Imeth dewmina",
+    title:'weatherpage',
+
   });
 });
-app.get('/help_section', (req, res) => {
-  res.send(
-    '<h1>help section</h1>');
-});
+
 
 
 
