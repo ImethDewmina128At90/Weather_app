@@ -43,13 +43,41 @@ app.get('/help', (req, res) => {
 });
 
 app.get('/weather', (req, res) => {
+
+  if(!req.query.address){
+    return res.send({
+      error:'you must provide  a address'
+    })
+  }
   res.send({
     weather: 'snowing',
     name:"Imeth dewmina",
     title:'weatherpage',
+    location: req.query.address
 
   });
 });
+app.get('/products',(req,res)=>{
+  if(!req.query.search){
+    return res.send({
+      error:'you must provide  seasch item',
+
+    })
+    console.log(req.query.search)
+    res.send({
+      products:[]
+    })
+  }
+})
+
+app.use((req, res) => {
+  res.status(404).render('404', {
+    title: '404',
+    name: 'Imeth',
+    errorMessage: '404 page not found',
+  });
+});
+
 
 
 
