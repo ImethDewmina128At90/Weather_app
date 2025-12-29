@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
     name:"Imeth dewmina",
   });
 });
+// about route 
 app.get('/about',(req,res) =>{
   res.render('about',{
     name:"Imeth dewmina",
@@ -32,7 +33,7 @@ app.get('/about',(req,res) =>{
   })
 })
 
-
+// help route 
 
 app.get('/help', (req, res) => {
   res.render('help', {
@@ -42,6 +43,7 @@ app.get('/help', (req, res) => {
 
 });
 
+//weather route 
 app.get('/weather', (req, res) => {
 
   if(!req.query.address){
@@ -57,6 +59,7 @@ app.get('/weather', (req, res) => {
 
   });
 });
+//products route 
 app.get('/products',(req,res)=>{
   if(!req.query.search){
     return res.send({
@@ -69,6 +72,7 @@ app.get('/products',(req,res)=>{
     })
   }
 })
+//404 route 
 
 app.use((req, res) => {
   res.status(404).render('404', {
@@ -77,6 +81,7 @@ app.use((req, res) => {
     errorMessage: '404 page not found',
   });
 });
+
 
 
 
